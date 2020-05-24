@@ -1,24 +1,31 @@
 package Metodos;
 
+import Ventanas.App;
+import Ventanas.InicioSesion;
 import java.sql.ResultSet;
 
 import javax.swing.JOptionPane;
 
 public class Login {
 
-    // Chequeo del Login
+    // Esto es el login que nos facilitaste
 
     public void checkUser(String nick, String Password) {
-        System.out.print("aqui tamo");
+        
         boolean userCheck = new modelo.Users().checkUserAndPass(nick, Password);
-        System.out.print("aqui tamo");
+        
         if(userCheck) { 
                     
-            JOptionPane.showMessageDialog(null, "Bienvenido");
+            JOptionPane.showMessageDialog(null, "Welcome to M´All");
+            App abrir = new App();
+            abrir.setVisible(true);
+            abrir.setLocationRelativeTo(null);
+            abrir.setTitle("M´All");
+            
             
             //this.dispose();
         }else { // Sino error
-            JOptionPane.showMessageDialog(null, "Usuario no encontrado");
+            JOptionPane.showMessageDialog(null, "Datos no validos");
         }
     }
 }

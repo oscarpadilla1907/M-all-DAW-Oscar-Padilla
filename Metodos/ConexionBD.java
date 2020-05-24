@@ -4,7 +4,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 
 
-
+//Esta clase establece la conexion con la base de datos
 
 public class ConexionBD {
 

@@ -1,13 +1,15 @@
 
 package Metodos;
 
-import Ventanas.Musica;
+
+import beans.Musica;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 
 public class Datos {
+//Esta clase la cree para recoger datos pero al final no la llegue a usar
     
     public ArrayList <Musica> recogerDatos(int recoger){
     ResultSet musica = ConexionBD.EjecutarSentencia("SELECT * FROM CANCIONES");
