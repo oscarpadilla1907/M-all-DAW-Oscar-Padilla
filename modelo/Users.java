@@ -9,8 +9,7 @@ public class Users {
     
     
     public boolean checkUserAndPass(String nick, String password) {
-		System.out.print("aqui tamo en user"); ResultSet usuarioBD = ConexionBD.EjecutarSentencia("SELECT * FROM usuario WHERE nick = 'ola' and password = 'ola';");
-		System.out.print("aqui tamo en user");
+	 ResultSet usuarioBD = ConexionBD.EjecutarSentencia("SELECT * FROM usuario WHERE nick = '"+nick+"' and password = '"+password+"';");
 		try {
 			return usuarioBD.next();
 		} catch (SQLException e) {
