@@ -49,6 +49,7 @@ public class InicioSesion extends javax.swing.JFrame {
         txtNick = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnInicio = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         btnAtras = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -73,7 +74,16 @@ public class InicioSesion extends javax.swing.JFrame {
                 btnInicioActionPerformed(evt);
             }
         });
-        getContentPane().add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, -1, -1));
+        getContentPane().add(btnInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, -1, -1));
+
+        jButton1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jButton1.setText("¿Olvidaste tu contraseña?");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 450, -1, -1));
 
         btnAtras.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btnAtras.setText("Back");
@@ -82,7 +92,7 @@ public class InicioSesion extends javax.swing.JFrame {
                 btnAtrasActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 430, -1, -1));
+        getContentPane().add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 400, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -115,16 +125,40 @@ public class InicioSesion extends javax.swing.JFrame {
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         Menu ventana1 = new Menu();
         ventana1.setVisible(true);
+        ventana1.setTitle("M´All");
+        ventana1.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+        //Restricciones en el login
+        
+        if(txtNick.getText().equals("") || txtPassword.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Rellene los campos");
+        }else{
         String nick = txtNick.getText();
         String password = txtPassword.getText();
 	new Metodos.Login().checkUser(nick, password);
+        
+        
+        boolean userCheck = new modelo.Users().checkUserAndPass(nick, password);
+        if (userCheck){
+        this.dispose();
+        }
+        }
+        
+        
        // App ventana = new App();
         //ventana.setVisible(true);
     }//GEN-LAST:event_btnInicioActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        PassUpdate act = new PassUpdate();
+        act.setVisible(true);
+        act.setTitle("M´All");
+        act.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
  
     /**
@@ -165,6 +199,7 @@ public class InicioSesion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnInicio;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

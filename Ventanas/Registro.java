@@ -32,8 +32,8 @@ public class Registro extends javax.swing.JFrame {
 
         NombreDeUsuario = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
+        txtNick = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
-        txtNick1 = new javax.swing.JTextField();
         txtPassword = new javax.swing.JPasswordField();
         btnRegistro = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
@@ -54,11 +54,11 @@ public class Registro extends javax.swing.JFrame {
         txtCorreo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         getContentPane().add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 280, 270, 30));
 
-        txtNombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 270, 30));
+        txtNick.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        getContentPane().add(txtNick, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 140, 270, 30));
 
-        txtNick1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        getContentPane().add(txtNick1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 270, 30));
+        txtNombre.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 210, 270, 30));
         getContentPane().add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 350, 270, 30));
 
         btnRegistro.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
@@ -108,16 +108,26 @@ public class Registro extends javax.swing.JFrame {
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         Menu ventana2 = new Menu();
          ventana2.setVisible(true);
+         ventana2.setLocationRelativeTo(null);
+         ventana2.setTitle("M´All");
          this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroActionPerformed
-        ConexionBD.Conectar();
-        ConexionBD.EjecutarUpdate("INSERT INTO USUARIO VALUES ('"+txtCorreo.getText()+"' , '"+txtNombre.getText()+"' , '"+txtCorreo.getText()+"' , '"+txtPassword.getText()+"')");
-        JOptionPane.showMessageDialog(null, "Registro Completado");
+        //Funcion para registrar Usuarios nuevos
+        
+        if(txtNombre.getText().equals("") || txtNick.getText().equals("") || txtCorreo.getText().equals("") || txtPassword.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+        }else{
+        ConexionBD.EjecutarUpdate("INSERT INTO USUARIO VALUES ('"+txtNick.getText()+"' , '"+txtNombre.getText()+"' , '"+txtCorreo.getText()+"' , '"+txtPassword.getText()+"')");
+        JOptionPane.showMessageDialog(null, "Usuario Registrado");
         Menu ventana2 = new Menu();
         ventana2.setVisible(true);
+        ventana2.setLocationRelativeTo(null);
+        ventana2.setTitle("M´All");
         this.dispose();
+        }
+        
         
     }//GEN-LAST:event_btnRegistroActionPerformed
 
@@ -166,7 +176,7 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistro;
     private javax.swing.JLabel lbl_fondo;
     private javax.swing.JTextField txtCorreo;
-    private javax.swing.JTextField txtNick1;
+    private javax.swing.JTextField txtNick;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables

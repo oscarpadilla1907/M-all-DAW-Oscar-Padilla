@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Ventanas;
-
+//Basicamente este es el menu principal
 /**
  *
  * @author Oscar Padilla
@@ -27,22 +27,40 @@ public class App extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
         RegistrarCancion = new javax.swing.JLabel();
+        btnRegistrar1 = new javax.swing.JButton();
+        RegistrarCancion1 = new javax.swing.JLabel();
         EscucharMusica = new javax.swing.JLabel();
         btnGo = new javax.swing.JButton();
-        btnCerrarSesion = new javax.swing.JButton();
         btnExit = new javax.swing.JButton();
         btnRegistrar = new javax.swing.JButton();
         MainMenu = new javax.swing.JLabel();
         lbl_fondo = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         RegistrarCancion.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         RegistrarCancion.setForeground(new java.awt.Color(255, 255, 255));
-        RegistrarCancion.setText("Registrar Cancion");
-        getContentPane().add(RegistrarCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, -1, -1));
+        RegistrarCancion.setText("Eliminar Cancion");
+        getContentPane().add(RegistrarCancion, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
+
+        btnRegistrar1.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        btnRegistrar1.setText("Eliminar");
+        btnRegistrar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrar1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnRegistrar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 110, -1));
+
+        RegistrarCancion1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        RegistrarCancion1.setForeground(new java.awt.Color(255, 255, 255));
+        RegistrarCancion1.setText("Registrar Cancion");
+        getContentPane().add(RegistrarCancion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
         EscucharMusica.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         EscucharMusica.setForeground(new java.awt.Color(255, 255, 255));
@@ -51,20 +69,21 @@ public class App extends javax.swing.JFrame {
 
         btnGo.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnGo.setText("Go!");
-        getContentPane().add(btnGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, -1, -1));
-
-        btnCerrarSesion.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        btnCerrarSesion.setText("Cerrar Sesion");
-        btnCerrarSesion.addActionListener(new java.awt.event.ActionListener() {
+        btnGo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCerrarSesionActionPerformed(evt);
+                btnGoActionPerformed(evt);
             }
         });
-        getContentPane().add(btnCerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 470, -1, -1));
+        getContentPane().add(btnGo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, -1, -1));
 
         btnExit.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         btnExit.setText("Salir");
-        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 470, -1, -1));
+        btnExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExitActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnExit, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, -1));
 
         btnRegistrar.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         btnRegistrar.setText("Registrar");
@@ -73,7 +92,7 @@ public class App extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, -1, -1));
+        getContentPane().add(btnRegistrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, -1, -1));
 
         MainMenu.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
         MainMenu.setForeground(new java.awt.Color(255, 255, 255));
@@ -89,14 +108,30 @@ public class App extends javax.swing.JFrame {
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         RegistrarCancion ventanaRegistro = new RegistrarCancion();
         ventanaRegistro.setVisible(true);
+        ventanaRegistro.setLocationRelativeTo(null);
+        ventanaRegistro.setTitle("M´All");
         this.dispose();
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
-    private void btnCerrarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarSesionActionPerformed
-        Menu volver = new Menu();
-        volver.setVisible(true);
+    private void btnGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoActionPerformed
+        tabla musica = new tabla();
+        musica.setVisible(true);
+        musica.setLocationRelativeTo(null);
+        musica.setTitle("M´All");
         this.dispose();
-    }//GEN-LAST:event_btnCerrarSesionActionPerformed
+    }//GEN-LAST:event_btnGoActionPerformed
+
+    private void btnRegistrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrar1ActionPerformed
+        EliminarCancion eliminar = new EliminarCancion();
+        eliminar.setVisible(true);
+        eliminar.setTitle("M´All");
+        eliminar.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_btnRegistrar1ActionPerformed
+
+    private void btnExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExitActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnExitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -137,10 +172,12 @@ public class App extends javax.swing.JFrame {
     private javax.swing.JLabel EscucharMusica;
     private javax.swing.JLabel MainMenu;
     private javax.swing.JLabel RegistrarCancion;
-    private javax.swing.JButton btnCerrarSesion;
+    private javax.swing.JLabel RegistrarCancion1;
     private javax.swing.JButton btnExit;
     private javax.swing.JButton btnGo;
     private javax.swing.JButton btnRegistrar;
+    private javax.swing.JButton btnRegistrar1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbl_fondo;
     // End of variables declaration//GEN-END:variables
 }

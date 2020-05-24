@@ -6,7 +6,6 @@
 package Ventanas;
 
 import Metodos.ConexionBD;
-import Metodos.Contador;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Oscar Padilla
  */
 public class RegistrarCancion extends javax.swing.JFrame {
-public static int numero = 5;
+public static int numero = 100;
     
     
     
@@ -95,7 +94,7 @@ public static int numero = 5;
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 430, -1, -1));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 427, -1, 40));
 
         jButton1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jButton1.setText("Registrar");
@@ -150,9 +149,17 @@ public static int numero = 5;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       
-        ConexionBD.Conectar();
+        //Funcion que permite registrar una cancion nueva
+        if(txtNombre.getText().equals("") || txtAutor.getText().equals("") || txtUrl.getText().equals("") || txtFecha.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Rellene todos los campos");
+        }else{
         ConexionBD.EjecutarUpdate("INSERT INTO CANCIONES VALUES ('"+txtNombre.getText()+"' , '"+txtAutor.getText()+"' , '"+txtUrl.getText()+"' , '"+txtFecha.getText()+"')");
-        JOptionPane.showMessageDialog(null, "Registro Completado");
+        JOptionPane.showMessageDialog(null, "Cancion registrada");
+        }
+        
+        
+        
+        
         numero++;
         
         
@@ -161,6 +168,8 @@ public static int numero = 5;
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         App ventanaPrincipal = new App();
         ventanaPrincipal.setVisible(true);
+        ventanaPrincipal.setLocationRelativeTo(null);
+        ventanaPrincipal.setTitle("M´All");
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

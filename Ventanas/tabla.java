@@ -4,9 +4,12 @@
  * and open the template in the editor.
  */
 package Ventanas;
-
-import Metodos.Contador;
+import Metodos.ConexionBD;
+import java.applet.AudioClip;
 import Metodos.Datos;
+import beans.Musica;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,6 +19,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Oscar Padilla
  */
 public class tabla extends javax.swing.JFrame {
+
+    static String cancion;
     
     
 
@@ -37,6 +42,9 @@ public class tabla extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        txtUrl = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -59,6 +67,33 @@ public class tabla extends javax.swing.JFrame {
         jScrollPane2.setViewportView(jTable2);
 
         getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 130));
+
+        txtUrl.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txtUrl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUrlActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 480, 360, 30));
+
+        jButton3.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
+        jButton3.setText("Reproducir");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Pega aqui una URL para reproducir la cancion.");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
 
         jButton2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jButton2.setText("Back");
@@ -90,27 +125,75 @@ public class tabla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
-        int recoger = 0;
+        //int recoger = 0;
         int y = RegistrarCancion.numero;
         
         String nombreColumnas []={"Nombre", "Autor/Grupo", "URL", "Año"};
         String data[][] = new String[y][4];
-        new Metodos.Datos();
+        //ArrayList <Musica> musicas = new Metodos.Datos().recogerDatos(recoger);
         
-        for(int i = 0; i < y; i++){
-        data[i][0]="a";
-        data[i][1]="a"+i;
-        data[i][2]="a"+i;
-        data[i][3]="a"+i;
         
-        }
+        int i = 0;
+        String nombre;
+        String autor;
+        String url;
+        int fecha;
+        ResultSet musica = ConexionBD.EjecutarSentencia("SELECT * FROM CANCIONES");
+        try{
+            while(musica.next()){
+        Musica mostrarMusica = new Musica();
+        nombre = musica.getString("nombre");
+        autor = musica.getString("autor");
+        url = musica.getString("url");
+        fecha = musica.getInt("fecha");
+        mostrarMusica = new Musica(nombre, autor, url, fecha);
+        
+        
+        data[i][0]= nombre;
+        data[i][1]=autor;
+        data[i][2]=url;
+        data[i][3]=""+fecha;
+        i++;
+        
+        
         jTable2.setModel(new DefaultTableModel(data, nombreColumnas));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        
+        
+        
+       
+        
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        App app = new App();
+        app.setVisible(true);
+        app.setLocationRelativeTo(null);
+        app.setTitle("M´All");
+        this.dispose();
+        
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUrlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUrlActionPerformed
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        cancion = txtUrl.getText();
+        Reproductor play = new Reproductor();
+        play.setVisible(true);
+        play.setTitle("Reproductor");
+        play.setLocationRelativeTo(null);
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -150,9 +233,12 @@ public class tabla extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     private javax.swing.JLabel lbl_fondo;
+    private javax.swing.JTextField txtUrl;
     // End of variables declaration//GEN-END:variables
 }
